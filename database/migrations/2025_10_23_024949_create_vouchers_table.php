@@ -22,6 +22,9 @@ return new class extends Migration
             $table->enum('status',['aktif','kadaluarsa'])->default('aktif');
             $table->string('whatsapp')->nullable();
             $table->string('gambar')->nullable();
+              // tambahan
+            $table->string('tagline')->nullable();
+            $table->json('fitur')->nullable();
             $table->timestamps();
         });
     }

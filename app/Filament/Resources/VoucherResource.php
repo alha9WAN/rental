@@ -56,6 +56,11 @@ class VoucherResource extends Resource
                         ->unique(ignoreRecord: true)
                         ->maxLength(255)
                         ->readOnly(),
+ TextInput::make('tagline')
+                       ->label('Tagline')
+                       ->placeholder('Contoh: Perjalanan nyaman dan hemat!')
+                       ->maxLength(100)
+                       ->required(),
 
                     Select::make('kategori_id')
                         ->label('Kategori Voucher')
@@ -66,7 +71,16 @@ class VoucherResource extends Resource
                     TextInput::make('diskon')
                         ->label('Diskon (%)')
                         ->placeholder('Contoh: 10.5 atau 30')
-                        ->nullable(),
+                        ->nullable()    ->helperText('Tidak menggunkan % cukup angka saja Contoh 30 atau 10')
+,
+
+                          TextInput::make('harga')
+                        ->label('Harga')
+                        ->numeric()
+                        ->required()
+                        ->prefix('Rp')
+                        ->placeholder('Contoh: 250000')
+                        ->columnSpan(1),
 
                         DatePicker::make('berlaku_hingga')
                         ->label('Berlaku Hingga')
@@ -88,7 +102,12 @@ class VoucherResource extends Resource
                         ->prefixIcon('heroicon-o-phone')
                         ->maxLength(30)
                         ->nullable()->columnSpanFull(),
-
+Textarea::make('fitur')
+  ->label('Fitur Tambahan')
+  ->placeholder("Contoh: Hemat 20%, Wifi,Spot foto aesthetic")
+  ->rows(3)
+  ->helperText('Pisahkan setiap fitur dengan koma (,) contoh: Hemat 20%, Wifi,Spot foto aesthetic')
+  ->columnSpanFull(),
 
 
 
@@ -122,6 +141,11 @@ class VoucherResource extends Resource
                 ImageColumn::make('gambar')->label('Gambar')->getStateUsing(fn($record) => $record->gambar ? asset('storage/' . $record->gambar) : null)->height(70)->width(100),
                 Tables\Columns\TextColumn::make('nama')->label('Nama Voucher')->searchable()->sortable()->limit(30),
                 Tables\Columns\TextColumn::make('kategoriVoucher.nama')->label('Kategori')->sortable()->searchable(),
+
+                 Tables\Columns\TextColumn::make('harga')
+                ->label('Harga')
+                ->money('IDR', true) // format uang (Rp)
+                ->sortable(),
                 Tables\Columns\TextColumn::make('diskon')->label('Diskon (%)')->sortable(),
                 Tables\Columns\TextColumn::make('berlaku_hingga')->label('Berlaku Hingga')->sortable(),
                 Tables\Columns\TextColumn::make('status')->label('Status')->badge()->color(fn (string $state): string => match($state){
@@ -139,6 +163,8 @@ class VoucherResource extends Resource
                     }
                 }),
             ])
+
+
 
                     ->filters([
                 Tables\Filters\SelectFilter::make('nama')

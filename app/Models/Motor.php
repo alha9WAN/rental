@@ -26,10 +26,18 @@ class Motor extends Model
         'whatsapp',
         'deskripsi',
         'gambar',
+           // tambahan
+        'fitur',
+        'tagline'
     ];
 
     public function kategoriMotor()
     {
         return $this->belongsTo(KategoriMotor::class, 'kategori_id');
     }
+
+     // Akses fitur dalam bentuk array (otomatis decode JSON)
+    protected $casts = [
+        'fitur' => 'array',
+    ];
 }

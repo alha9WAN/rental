@@ -11,12 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kategori_mobils', function (Blueprint $table) {
-            $table->id();
-            $table->enum('nama', ['large', 'medium', 'small']);
-            $table->text('deskripsi')->nullable();
-            $table->timestamps();
-        });
+  Schema::create('kategori_mobils', function (Blueprint $table) {
+    $table->id();
+    $table->enum('nama', [
+        'economy',
+        'compact',
+        'midsize sedan',
+        'suv crossover',
+        'mpv family',
+        'premium luxury',
+        'pickup commercial'
+    ]);
+    $table->text('deskripsi')->nullable();
+    $table->timestamps();
+});
+
+
+
     }
 
     /**

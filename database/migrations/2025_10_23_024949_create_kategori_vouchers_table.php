@@ -11,9 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kategori_vouchers', function (Blueprint $table) {
+           Schema::create('kategori_vouchers', function (Blueprint $table) {
             $table->id();
-              $table->enum('nama', ['restoran','hotel','lainnya']);
+               $table->enum('nama', [
+                'kuliner',
+                'wisata_tiket',
+                'akomodasi',
+                'transportasi',
+                'souvenir_belanja'
+            ]);
             $table->text('deskripsi')->nullable();
             $table->timestamps();
         });

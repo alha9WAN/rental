@@ -32,14 +32,22 @@ protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     {
         return $form
                 ->schema([
-            Forms\Components\Select::make('nama')
-                ->label('Nama Kategori')
-                ->options([
-                    'large' => 'Large',
-                    'medium' => 'Medium',
-                    'small' => 'Small',
-                ])
-                ->required()->placeholder('Pilih Kategori Mobil')->columnSpanFull(),
+
+
+                Forms\Components\Select::make('nama')
+    ->label('Nama Kategori')
+    ->options([
+        'economy' => 'Economy',
+        'compact' => 'Compact',
+        'midsize sedan' => 'Midsize / Sedan',
+        'suv crossover' => 'SUV / Crossover',
+        'mpv family' => 'MPV / Family',
+        'premium luxury' => 'Premium / Luxury',
+        'pickup commercial' => 'Pickup / Commercial',
+    ])
+    ->required()
+    ->placeholder('Pilih Kategori Mobil')
+    ->columnSpanFull(),
 
             Forms\Components\Textarea::make('deskripsi')
                 ->label('Deskripsi')

@@ -26,6 +26,9 @@ class Mobil extends Model
         'whatsapp',
         'deskripsi',
         'gambar',
+        // tambahan
+        'fitur',
+        'tagline'
     ];
 
     public function mobilKategori()
@@ -33,6 +36,9 @@ class Mobil extends Model
         return $this->belongsTo(KategoriMobil::class, 'kategori_id');
     }
 
-
+  // Akses fitur dalam bentuk array (otomatis decode JSON)
+    protected $casts = [
+        'fitur' => 'array',
+    ];
 
 }

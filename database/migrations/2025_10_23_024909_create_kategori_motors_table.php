@@ -11,9 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kategori_motors', function (Blueprint $table) {
+           Schema::create('kategori_motors', function (Blueprint $table) {
             $table->id();
-             $table->enum('nama', ['large','medium','small']);
+            $table->enum('nama', [
+                'electric',
+                'matic_under_125cc',
+                'matic_125_155cc',
+                'sport_manual',
+                'premium_big_scooter'
+            ]);
             $table->text('deskripsi')->nullable();
             $table->timestamps();
         });

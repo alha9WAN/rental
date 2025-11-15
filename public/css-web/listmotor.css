@@ -1,0 +1,161 @@
+         /* css list motor */
+                body {
+           font-family: 'Poppins', sans-serif;
+       }
+       .card-hover {
+           transition: all 0.3s ease;
+       }
+       .card-hover:hover {
+           transform: translateY(-5px);
+           box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+       }
+       .search-section {
+           background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+       }
+       .search-box {
+           border: 2px solid #e2e8f0;
+           transition: all 0.3s ease;
+       }
+       .search-box:focus-within {
+           border-color: #22c55e;
+           box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+       }
+       .search-btn {
+           transition: all 0.3s ease;
+           background: #22c55e;
+           color: white;
+       }
+       .search-btn:hover {
+           background: #16a34a;
+           transform: scale(1.05);
+       }
+       .filter-select {
+           border: 2px solid #e2e8f0;
+           transition: all 0.3s ease;
+       }
+       .filter-select:focus {
+           border-color: #22c55e;
+           box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+           outline: none;
+       }
+       .eye-icon-container {
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+           background: rgba(255, 255, 255, 0.9);
+           width: 60px;
+           height: 60px;
+           border-radius: 50%;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           transition: all 0.3s ease;
+           opacity: 0;
+           z-index: 10;
+           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+       }
+       .card-hover:hover .eye-icon-container {
+           opacity: 1;
+       }
+       .eye-icon-container:hover {
+           background: #22c55e;
+           transform: translate(-50%, -50%) scale(1.05);
+       }
+       .eye-icon {
+           color: #4b5563;
+           font-size: 24px;
+           transition: all 0.3s ease;
+       }
+       .eye-icon-container:hover .eye-icon {
+           color: white;
+       }
+       .text-primary {
+           color: #22c55e;
+       }
+       .bg-primary {
+           background-color: #22c55e;
+       }
+       .border-primary {
+           border-color: #22c55e;
+       }
+       .image-overlay {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           background: rgba(0, 0, 0, 0.3);
+           opacity: 0;
+           transition: all 0.3s ease;
+           z-index: 5;
+       }
+       .card-hover:hover .image-overlay {
+           opacity: 1;
+       }
+       .category-badge {
+           background: linear-gradient(135deg, #22c55e, #16a34a);
+       }
+
+
+       /* end css list motor */
+
+
+       /* Responsive improvements */
+@media (max-width: 390px) {
+    .container {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+    }
+
+    .search-section {
+        padding: 1rem !important;
+    }
+
+    .search-box input {
+        font-size: 14px !important;
+        padding: 0.75rem !important;
+    }
+
+    /* Perbaikan placeholder */
+    .search-box input::placeholder {
+        font-size: 13px;
+    }
+
+    .filter-select {
+        font-size: 14px !important;
+        padding: 0.75rem !important;
+    }
+
+    .w-full.lg\\:w-auto.flex.gap-4 {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .w-full.lg\\:w-auto.flex.gap-4 button {
+        width: 100%;
+        min-width: auto !important;
+    }
+
+    .car-card .p-6 {
+        padding: 1rem !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .search-box input::placeholder {
+        font-size: 12px;
+    }
+
+    .car-card .p-6 {
+        padding: 0.75rem !important;
+    }
+
+    .text-4xl {
+        font-size: 1.75rem !important;
+    }
+
+    .text-lg {
+        font-size: 0.875rem !important;
+    }
+}

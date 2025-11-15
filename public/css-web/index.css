@@ -1,4 +1,9 @@
- 
+
+section {
+    scroll-margin-top: 20px;
+}
+
+
         .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
@@ -36,7 +41,7 @@
             font-weight: 600;
         }
 
-        /* New styles for eye icon */
+        /* Base styles for eye icon */
         .eye-icon-container {
             position: absolute;
             top: 50%;
@@ -53,24 +58,247 @@
             transition: all 0.3s ease;
             z-index: 5;
         }
-        .car-card:hover .eye-icon-container {
+
+        .product-card:hover .eye-icon-container,
+        .voucher-card:hover .eye-icon-container {
             opacity: 1;
         }
+
         .eye-icon {
             color: white;
             font-size: 24px;
         }
 
-        /* WhatsApp icon next to company name */
-        .company-whatsapp {
-            color: #25D366;
-            margin-left: 8px;
-            font-size: 40px; /* Diperbesar */
+        .eye-icon-mobil:hover {
+            background: #3b82f6 !important; /* Blue for mobil */
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .eye-icon-motor:hover {
+            background: #10b981 !important; /* Green for motor */
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .eye-icon-voucher:hover {
+            background: #f59e0b !important; /* Yellow for voucher */
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        #mobile-menu.menu-open {
+            max-height: 500px;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #mobile-menu-button {
             transition: all 0.3s ease;
-
         }
-        .company-whatsapp:hover i {
-            transform: scale(1.1);
 
+        .product-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
+
+        .product-card .card-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card .card-footer {
+            margin-top: auto;
+        }
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+.section-target {
+    scroll-margin-top: 100px;
+}
+
+.section-fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.section-fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-highlight {
+    transition: all 0.5s ease;
+}
+
+.section-highlight.scrolled-to {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+    border-left: 4px solid #3B82F6;
+    padding-left: 1rem;
+}
+
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    width: 0%;
+    z-index: 1000;
+    transition: width 0.3s ease;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .section-target {
+        scroll-margin-top: 80px;
+    }
+
+    .back-to-top {
+        bottom: 1rem;
+        right: 1rem;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+
+
+/* responsve button nya
+ */
+@media (max-width: 400px) {
+
+
+   .sticky-nav .container {
+       padding-left: 0.5rem;
+       padding-right: 0.5rem;
+   }
+
+
+   .sticky-nav .text-2xl {
+       font-size: 1.25rem;
+   }
+
+
+   .mobile-menu {
+       margin-left: 0.5rem;
+       margin-right: 0.5rem;
+   }
+
+
+   .mobile-partner-btn {
+       font-size: 0.8rem;
+       padding: 0.6rem 0.8rem;
+   }
+}
+
+/* car pool */
+
+    /* Eye Icon Container */
+    .eye-icon-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.9);
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        opacity: 0;
+        z-index: 10;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .card-hover:hover .eye-icon-container {
+        opacity: 1;
+    }
+    .eye-icon-container:hover {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+    .eye-icon {
+        color: #4b5563;
+        font-size: 24px;
+        transition: all 0.3s ease;
+    }
+    .eye-icon-container:hover .eye-icon {
+        color: white;
+    }
+
+    /* Warna khusus untuk carpool (ungu) */
+    .eye-icon-carpool.eye-icon-container {
+        background: rgba(255, 255, 255, 0.9);
+    }
+    .eye-icon-carpool.eye-icon-container:hover {
+        background: #8b5cf6; /* Warna ungu */
+    }
+    .eye-icon-carpool.eye-icon-container:hover .eye-icon {
+        color: white;
+    }
+
+
+
 

@@ -73,6 +73,12 @@ protected static ?string $navigationIcon = 'heroicon-o-plus-circle';
                         ->maxLength(255)
                         ->columnSpan(1),
 
+                    TextInput::make('tagline')
+                        ->label('Tagline')
+                        ->placeholder('Contoh: Perjalanan nyaman dan hemat!')
+                        ->maxLength(100)
+                        ->required(),
+
                     Select::make('kategori_id')
                         ->label('Kategori Mobil')
                         ->relationship('mobilKategori', 'nama')
@@ -162,7 +168,12 @@ protected static ?string $navigationIcon = 'heroicon-o-plus-circle';
                         ->nullable()
                         ->columnSpan(1),
 
-
+              Textarea::make('fitur')
+    ->label('Fitur Tambahan')
+    ->placeholder("Contoh: AC, Musik Chill, Sopir Lokal")
+    ->rows(3)
+    ->helperText('Pisahkan setiap fitur dengan koma (,) contoh: AC, WiFi, Sopir Lokal')
+    ->columnSpanFull(),
                     Textarea::make('deskripsi')
                         ->label('Deskripsi Mobil')
                         ->placeholder('Tuliskan detail singkat tentang mobil, fitur, atau kondisi...')

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Carpool;
 use Illuminate\Http\Request;
 use App\Models\Mobil;
 use App\Models\Motor;
@@ -14,11 +15,17 @@ class IndexController extends Controller
      */
     public function index()
     {
-$mobils = Mobil::with('mobilKategori')->get();
-$motors = Motor::with('kategoriMotor')->get();
- $vouchers = Voucher::with('kategoriVoucher')->get();
+$mobils = Mobil::with('mobilKategori')->latest()->take(3)->get();
+$motors = Motor::with('kategoriMotor')->latest()->take(3)->get();
+$vouchers = Voucher::with('kategoriVoucher')->latest()->take(3)->get();
+$carrPools = Carpool::with('kategori')->latest()->take(3)->get();
 
-        return view('index', compact('mobils', 'motors', 'vouchers'));    }
+
+
+ return view('index', compact('mobils', 'motors', 'vouchers','carrPools'));
+
+
+    }
 
     /**
      * Show the form for creating a new resource.

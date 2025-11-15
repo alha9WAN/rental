@@ -21,10 +21,19 @@ class Voucher extends Model
         'status',
         'whatsapp',
         'gambar',
+            // tambahan
+        'fitur',
+        'tagline',
+        'harga', 
     ];
 
     public function kategoriVoucher()
     {
         return $this->belongsTo(KategoriVoucher::class, 'kategori_id');
     }
+    // Akses fitur dalam bentuk array (otomatis decode JSON)
+    protected $casts = [
+        'fitur' => 'array',
+    ];
+
 }

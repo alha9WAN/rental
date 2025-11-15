@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\Carpool;
 use App\Models\Mobil;
 use App\Models\Motor;
 use App\Models\Voucher;
@@ -17,6 +18,7 @@ protected static ?int $sort = 1;
         $totalMobil = Mobil::count();
         $totalMotor = Motor::count();
         $totalVoucher = Voucher::count();
+        $toalCarPool = Carpool::count();
 
         return [
             Stat::make('Total Mobil', $totalMobil)
@@ -36,6 +38,14 @@ protected static ?int $sort = 1;
                 ->descriptionIcon('heroicon-m-arrow-trending-up')
                 ->chart([4, 9, 6, 5, 8, 10, 12])
                 ->color('info'),
-        ];
+                Stat::make('Total CarPool', $toalCarPool)
+                  ->description('Jumlah semua CarPool')
+                  ->descriptionIcon('heroicon-m-arrow-trending-up')
+                  ->chart([4, 9, 6, 5, 8, 10, 12])
+                  ->color('danger')
+            ];
+
+
+
     }
 }

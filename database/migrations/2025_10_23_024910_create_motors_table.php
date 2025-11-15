@@ -27,6 +27,9 @@ return new class extends Migration
             $table->string('whatsapp',50)->nullable();
             $table->text('deskripsi')->nullable();
             $table->string('gambar')->nullable();
+            // tambahan
+            $table->string('tagline')->nullable();
+            $table->json('fitur')->nullable();
             $table->timestamps();
         });
     }

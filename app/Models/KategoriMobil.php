@@ -17,7 +17,6 @@ class KategoriMobil extends Model
     ];
 
     /**
-     * Relasi ke mobil-mobil yang termasuk kategori ini
      */
     public function mobilKategori()
     {

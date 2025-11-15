@@ -46,6 +46,11 @@ class MotorResource extends Resource
                         label('Slug')
                         ->required()->
                         unique(ignoreRecord: true)->maxLength(255)->placeholder('Otomatis tergenerate ketika memasukkan nama motor')->readOnly(),
+                           TextInput::make('tagline')
+                       ->label('Tagline')
+                       ->placeholder('Contoh: Perjalanan nyaman dan hemat!')
+                       ->maxLength(100)
+                       ->required(),
 
 
                         Select::make('kategori_id')->
@@ -61,7 +66,7 @@ class MotorResource extends Resource
                             'Listrik' => 'Listrik',
                         ])->required()->placeholder('Pilih tipe motor'),
 
-  Select::make('status')->label('Status')->options([
+                Select::make('status')->label('Status')->options([
                             'tersedia' => 'Tersedia',
                             'disewa' => 'Disewa',
                         ])->default('tersedia'),
@@ -120,6 +125,13 @@ class MotorResource extends Resource
                         ->maxLength(30)
                         ->nullable()
                         ->columnSpan(1),
+
+                          Textarea::make('fitur')
+   ->label('Fitur Tambahan')
+   ->placeholder("Contoh: BBM Irit, Helem,GPS")
+   ->rows(3)
+   ->helperText('Pisahkan setiap fitur dengan koma (,) contoh: BBM Irit, Helem,GPS')
+   ->columnSpanFull(),
 
                         Textarea::make('deskripsi')->
                         label('Deskripsi')

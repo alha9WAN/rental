@@ -24,15 +24,18 @@ class KategoriMotorResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('nama')
-                    ->label('Nama Kategori')
-                    ->options([
-                        'large' => 'Large',
-                        'medium' => 'Medium',
-                        'small' => 'Small',
-                    ])
-                    ->required()
-                    ->placeholder('Pilih Kategori Motor')->columnSpanFull(),
+ Forms\Components\Select::make('nama')
+    ->label('Nama Kategori')
+    ->options([
+        'electric' => 'Electric',
+        'matic_under_125cc' => 'Matic < 125cc',
+        'matic_125_155cc' => 'Matic 125-155cc',
+        'sport_manual' => 'Sport Manual',
+        'premium_big_scooter' => 'Premium / Big Scooter',
+    ])
+    ->required()
+    ->placeholder('Pilih Kategori Motor')
+    ->columnSpanFull(),
 
                 Forms\Components\Textarea::make('deskripsi')
                     ->label('Deskripsi')
