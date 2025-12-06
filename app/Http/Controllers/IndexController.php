@@ -15,10 +15,10 @@ class IndexController extends Controller
      */
     public function index()
     {
-$mobils = Mobil::with('mobilKategori')->latest()->take(3)->get();
-$motors = Motor::with('kategoriMotor')->latest()->take(3)->get();
-$vouchers = Voucher::with('kategoriVoucher')->latest()->take(3)->get();
-$carrPools = Carpool::with('kategori')->latest()->take(3)->get();
+$mobils = Mobil::with('mobilKategori')->latest()->take(4)->get();
+$motors = Motor::with('kategoriMotor')->latest()->take(4)->get();
+$vouchers = Voucher::with('kategoriVoucher')->latest()->take(4)->get();
+$carrPools = Carpool::with('kategori')->latest()->take(4)->get();
 
 
 

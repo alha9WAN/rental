@@ -73,13 +73,11 @@ class CarpoolResource extends Resource
 
                     TextInput::make('lokasi_awal')
                         ->label('Lokasi Awal')
-                        ->placeholder('Contoh: Lombok Airport')
-                        ->required(),
+                        ->placeholder('Contoh: Lombok Airport'),
 
                     TextInput::make('lokasi_tujuan')
                         ->label('Lokasi Tujuan')
-                        ->placeholder('Contoh: Senggigi')
-                        ->required(),
+                        ->placeholder('Contoh: Senggigi'),
 
                     TextInput::make('jam_berangkat')
                         ->label('Jam ')
@@ -154,11 +152,11 @@ class CarpoolResource extends Resource
             ->searchable()
             ->badge()
             ->color(fn($state) => match ($state) {
-                'city route' => 'success',
-                'tour route' => 'info',
-                'airport transfer' => 'warning',
-                'private executive' => 'secondary',
-                'group shuttle' => 'danger',
+                'City Route' => 'success',
+                'Tour Route' => 'info',
+                'Airport Transfer' => 'warning',
+                'Private Executive' => 'secondary',
+                'Group Shuttle' => 'danger',
                 default => 'gray',
             }),
 

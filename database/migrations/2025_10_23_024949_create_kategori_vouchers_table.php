@@ -13,13 +13,13 @@ return new class extends Migration
     {
            Schema::create('kategori_vouchers', function (Blueprint $table) {
             $table->id();
-               $table->enum('nama', [
-                'kuliner',
-                'wisata_tiket',
-                'akomodasi',
-                'transportasi',
-                'souvenir_belanja'
-            ]);
+          $table->enum('nama', [
+                'Toko Souvenir',
+                'Super Market',
+                'Spa',
+                'Salon Barber',
+                'Restaurant'
+            ])->unique();
             $table->text('deskripsi')->nullable();
             $table->timestamps();
         });

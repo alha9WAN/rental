@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('kategori_carpools', function (Blueprint $table) {
                      $table->id();
-            $table->enum('name', [
-                'city route',
-                'tour route',
-                'airport transfer',
-                'private executive',
-                'group shuttle'
+         $table->enum('name', [
+                'City Route',
+                'Tour Route',
+                'Airport Transfer',
+                'Private Executive',
+                'Group Shuttle'
             ])->unique();
             $table->text('deskripsi')->nullable();
             $table->timestamps();

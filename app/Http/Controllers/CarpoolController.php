@@ -35,13 +35,13 @@ class CarpoolController extends Controller
     }
 
          // Jalankan query dan ambil data
-$carPools = $query->paginate(3);
+$carPools = $query->paginate(12);
 
 
 
         $kategoris = KategoriCarpool::all();
 
-        return view('carPoll.list', compact('carPools','kategoris'));
+        return view('carpoll.list', compact('carPools','kategoris'));
 
     }
 

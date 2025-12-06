@@ -1,295 +1,266 @@
 @extends('components.page')
 @section('content')
+{{-- link js sweetalert --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (session('success'))
+<script>
+    Swal.fire({
+        title: "Success!",
+        text: "{{ session('success') }}",
+        icon: "success",
+        confirmButtonColor: '#3085d6'
+    });
+</script>
+@endif
 
-<style>
-    .container-extra-wide {
-        max-width: 99%;
-    }
-    @media (min-width: 1280px) {
-        .container-extra-wide {
-            max-width: 1800px;
-        }
-    }
-    .form-container {
-        max-width: none;
-    }
-
-    /* Perbaikan Responsivitas untuk Layar Kecil */
-    @media (max-width: 400px) {
-        .container-extra-wide {
-            padding-left: 0.5rem;
-            padding-right: 0.5rem;
-        }
-
-        .mobile-padding {
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-        }
-
-        .mobile-text {
-            font-size: 0.875rem;
-        }
-
-        .mobile-input {
-            font-size: 16px; /* Mencegah zoom pada iOS */
-            padding-top: 0.75rem;
-            padding-bottom: 0.75rem;
-            height: auto;
-        }
-
-        .mobile-button {
-            width: 100%;
-            margin-bottom: 0.5rem;
-            padding-top: 0.75rem;
-            padding-bottom: 0.75rem;
-            font-size: 0.875rem;
-        }
-
-        .mobile-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .mobile-label {
-            font-size: 0.875rem;
-        }
-
-        .mobile-textarea {
-            min-height: 80px;
-            font-size: 16px; /* Mencegah zoom pada iOS */
-        }
-
-        .mobile-header {
-            padding: 1rem;
-        }
-
-        .mobile-header h2 {
-            font-size: 1.25rem;
-        }
-
-        .mobile-header p {
-            font-size: 0.8rem;
-        }
-
-        .mobile-section {
-            padding: 1rem;
-        }
-
-        .mobile-section h3 {
-            font-size: 1.125rem;
-        }
-
-        .mobile-icon {
-            font-size: 1rem;
-        }
-    }
-</style>
+@if ($errors->any())
+<script>
+    Swal.fire({
+        title: "Failed!",
+        text: "There are input errors, please check the form again.",
+        icon: "error",
+        confirmButtonColor: '#d33'
+    });
+</script>
+@endif
 
 <main class="container-extra-wide mx-auto px-8 py-6 mobile-padding">
     <div class="w-full form-container">
         <div class="bg-white rounded-xl shadow-2xl overflow-hidden">
-            <!-- Header Form -->
-            <div class="bg-blue-500 p-6 text-white mobile-header">
+
+            <!-- Header -->
+            <div class="bg-blue-500 p-6 text-white">
                 <div class="flex items-center space-x-3">
                     <div class="bg-white bg-opacity-20 p-3 rounded-full">
-                        <i class="fas fa-user-plus mobile-icon"></i>
+                        <i class="fas fa-user-plus"></i>
                     </div>
                     <div>
-                        <h2 class="text-2xl font-bold mobile-text">Tambah Mitra Rental Baru</h2>
-                        <p class="text-blue-100 text-base mt-1 mobile-text">Isi formulir di bawah ini untuk menambahkan mitra rental baru ke dalam sistem</p>
+                        <h2 class="text-2xl font-bold">Add New Rental Partner</h2>
+                        <p class="text-blue-100">Fill out the form below correctly</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Form Content -->
-            <form id="form-mitra" class="p-6 space-y-6 mobile-section">
-                <!-- Informasi Dasar -->
-                <div class="bg-gray-50 p-6 rounded-xl mobile-section">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center mobile-text">
-                        <i class="fas fa-user-circle text-blue-500 mr-2 mobile-icon"></i>
-                        Informasi Dasar Mitra
+            <!-- Form -->
+            <form action="{{ route('mitra.store') }}" method="POST" class="p-6 space-y-6">
+                @csrf
+
+                <!-- Partner Information -->
+                <div class="bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-user-circle text-blue-500 mr-2"></i> Partner Information
                     </h3>
-                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 mobile-grid">
-                        <!-- Nama -->
+
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+
+                        <!-- Name -->
                         <div>
-                            <label for="nama" class="block text-base font-medium text-gray-700 mb-1 flex items-center mobile-label">
-                                Nama Lengkap
-                                <span class="text-red-500 ml-1">*</span>
-                            </label>
+                            <label class="block font-medium mb-1">Full Name <span class="text-red-500">*</span></label>
                             <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fas fa-user text-gray-400 mobile-icon"></i>
-                                </div>
-                                <input type="text" id="nama" name="nama" required
-                                       class="pl-10 w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 mobile-input"
-                                       placeholder="Masukkan nama lengkap mitra">
+                                <i class="fas fa-user absolute left-3 top-3 text-gray-400"></i>
+                                <input type="text" name="nama" value="{{ old('nama') }}"
+                                    class="pl-10 w-full px-4 py-2 border rounded-lg"
+                                    placeholder="Enter full name">
                             </div>
+                            @error('nama')
+                                <small class="text-red-500">{{ $message }}</small>
+                            @enderror
                         </div>
 
-                        <!-- No HP -->
+                        <!-- Phone Number -->
                         <div>
-                            <label for="no_hp" class="block text-base font-medium text-gray-700 mb-1 flex items-center mobile-label">
-                                Nomor HP/WhatsApp
-                                <span class="text-red-500 ml-1">*</span>
-                            </label>
+                            <label class="block font-medium mb-1">Phone/WhatsApp Number <span class="text-red-500">*</span></label>
                             <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fas fa-phone text-gray-400 mobile-icon"></i>
-                                </div>
-                                <input type="tel" id="no_hp" name="no_hp" required
-                                       class="pl-10 w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 mobile-input"
-                                       placeholder="Contoh: 081234567890">
+                                <i class="fas fa-phone absolute left-3 top-3 text-gray-400"></i>
+                                <input type="tel" name="no_hp" value="{{ old('no_hp') }}"
+                                    class="pl-10 w-full px-4 py-2 border rounded-lg {{ $errors->has('no_hp') ? 'border-red-500' : 'border-gray-300' }}"
+                                    placeholder="081234567890">
                             </div>
+                            @error('no_hp')
+                                <small class="text-red-500">{{ $message }}</small>
+                            @enderror
                         </div>
+
                     </div>
 
-                    <!-- Email dan Perusahaan -->
-                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 mt-4 mobile-grid">
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 mt-4">
+
                         <!-- Email -->
                         <div>
-                            <label for="email" class="block text-base font-medium text-gray-700 mb-1 flex items-center mobile-label">
-                                Email
-                            </label>
+                            <label class="block font-medium mb-1">Email</label>
                             <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fas fa-envelope text-gray-400 mobile-icon"></i>
-                                </div>
-                                <input type="email" id="email" name="email"
-                                       class="pl-10 w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 mobile-input"
-                                       placeholder="contoh@email.com">
+                                <i class="fas fa-envelope absolute left-3 top-3 text-gray-400"></i>
+                                <input type="email" name="email" value="{{ old('email') }}"
+                                    class="pl-10 w-full px-4 py-2 border rounded-lg {{ $errors->has('email') ? 'border-red-500' : 'border-gray-300' }}"
+                                    placeholder="email@example.com">
+                            </div>
+                            @error('email')
+                                <small class="text-red-500">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <!-- Company -->
+                        <div>
+                            <label class="block font-medium mb-1">Company</label>
+                            <div class="relative">
+                                <i class="fas fa-building absolute left-3 top-3 text-gray-400"></i>
+                                <input type="text" name="nama_perusahaan" value="{{ old('nama_perusahaan') }}"
+                                    class="pl-10 w-full px-4 py-2 border rounded-lg "
+                                    placeholder="Company name (optional)">
                             </div>
                         </div>
 
-                        <!-- Perusahaan -->
-                        <div>
-                            <label for="perusahaan" class="block text-base font-medium text-gray-700 mb-1 flex items-center mobile-label">
-                                Nama Perusahaan
-                            </label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fas fa-building text-gray-400 mobile-icon"></i>
-                                </div>
-                                <input type="text" id="perusahaan" name="perusahaan"
-                                       class="pl-10 w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 mobile-input"
-                                       placeholder="Nama perusahaan (jika ada)">
-                            </div>
-                        </div>
                     </div>
 
-                    <!-- Alamat -->
+                    <!-- Address -->
                     <div class="mt-4">
-                        <label for="alamat" class="block text-base font-medium text-gray-700 mb-1 flex items-center mobile-label">
-                            Alamat Lengkap
-                            <span class="text-red-500 ml-1">*</span>
-                        </label>
+                        <label class="block font-medium mb-1">Address <span class="text-red-500">*</span></label>
                         <div class="relative">
-                            <div class="absolute top-2 left-3 pointer-events-none">
-                                <i class="fas fa-map-marker-alt text-gray-400 mobile-icon"></i>
-                            </div>
-                            <textarea id="alamat" name="alamat" rows="3" required
-                                      class="pl-10 w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 mobile-textarea"
-                                      placeholder="Masukkan alamat lengkap mitra"></textarea>
+                            <i class="fas fa-map-marker-alt absolute left-3 top-3 text-gray-400"></i>
+                            <textarea name="alamat" rows="3"
+                                class="pl-10 w-full px-4 py-2 border rounded-lg "
+                                placeholder="Enter complete address">{{ old('alamat') }}</textarea>
                         </div>
+                        @error('alamat')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
 
-                <!-- Informasi Kendaraan -->
-                <div class="bg-gray-50 p-6 rounded-xl border-t-4 border-blue-500 mobile-section">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center mobile-text">
-                        <i class="fas fa-car text-blue-500 mr-2 mobile-icon"></i>
-                        Informasi Kendaraan
+                <!-- Vehicle Information -->
+                <div class="bg-gray-50 p-6 rounded-xl border-t-4 border-blue-500">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-car text-blue-500 mr-2"></i> Vehicle Information
                     </h3>
 
-                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 mobile-grid">
-                        <!-- Jenis Kendaraan -->
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+
+                        <!-- Vehicle Type -->
                         <div>
-                            <label for="jenis_kendaraan" class="block text-base font-medium text-gray-700 mb-1 flex items-center mobile-label">
-                                Jenis Kendaraan
-                                <span class="text-red-500 ml-1">*</span>
-                            </label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fas fa-list text-gray-400 mobile-icon"></i>
-                                </div>
-                                <select id="jenis_kendaraan" name="jenis_kendaraan" required
-                                        class="pl-10 w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 appearance-none mobile-input">
-                                    <option value="">Pilih Jenis Kendaraan</option>
-                                    <option value="mobil">Mobil</option>
-                                    <option value="motor">Motor</option>
-                                </select>
-                                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                                    <i class="fas fa-chevron-down text-gray-400 mobile-icon"></i>
-                                </div>
-                            </div>
+                            <label class="block font-medium mb-1">Vehicle Type <span class="text-red-500">*</span></label>
+                            <select name="jenis_kendaraan"
+                                class="w-full px-4 py-2 border rounded-lg ">
+                                <option value="">Select Type</option>
+                                <option value="mobil" {{ old('jenis_kendaraan') == 'mobil' ? 'selected' : '' }}>Car</option>
+                                <option value="motor" {{ old('jenis_kendaraan') == 'motor' ? 'selected' : '' }}>Motorcycle</option>
+                            </select>
+                            @error('jenis_kendaraan')
+                                <small class="text-red-500">{{ $message }}</small>
+                            @enderror
                         </div>
 
-                        <!-- Nama Kendaraan -->
+                        <!-- Vehicle Name -->
                         <div>
-                            <label for="nama_kendaraan" class="block text-base font-medium text-gray-700 mb-1 flex items-center mobile-label">
-                                Nama/Merk Kendaraan
-                                <span class="text-red-500 ml-1">*</span>
-                            </label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fas fa-car text-gray-400 mobile-icon"></i>
-                                </div>
-                                <input type="text" id="nama_kendaraan" name="nama_kendaraan" required
-                                       class="pl-10 w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 mobile-input"
-                                       placeholder="Contoh: Toyota Avanza, Honda Vario">
-                            </div>
+                            <label class="block font-medium mb-1">Vehicle Name <span class="text-red-500">*</span></label>
+                            <input type="text" name="nama_kendaraan" value="{{ old('nama_kendaraan') }}"
+                                class="w-full px-4 py-2 border rounded-lg {{ $errors->has('nama_kendaraan') ? 'border-red-500' : 'border-gray-300' }}"
+                                placeholder="Toyota Avanza / Honda Vario">
+                            @error('nama_kendaraan')
+                                <small class="text-red-500">{{ $message }}</small>
+                            @enderror
                         </div>
                     </div>
 
-                    <!-- Harga Sewa -->
+                    <!-- Price -->
                     <div class="mt-4">
-                        <label for="harga_sewa" class="block text-base font-medium text-gray-700 mb-1 flex items-center mobile-label">
-                            Harga Sewa (per hari)
-                        </label>
-                        <div class="relative rounded-lg shadow-sm">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-money-bill-wave text-gray-400 mobile-icon"></i>
-                            </div>
-                            <div class="absolute inset-y-0 left-10 flex items-center pointer-events-none">
-                                <span class="text-gray-500 text-sm mobile-text">Rp</span>
-                            </div>
-                            <input type="number" id="harga_sewa" name="harga_sewa" step="0.01" min="0"
-                                   class="pl-16 w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 mobile-input"
-                                   placeholder="0.00">
-                        </div>
-                        <p class="mt-1 text-xs text-gray-500 mobile-text">Masukkan harga sewa per hari dalam Rupiah</p>
+                        <label class="block font-medium mb-1">Rental Price / Day</label>
+                        <input type="number" name="harga_sewa" value="{{ old('harga_sewa') }}"
+                            class="w-full px-4 py-2 border rounded-lg" placeholder="0">
                     </div>
 
-                    <!-- Deskripsi -->
+                    <!-- Description -->
                     <div class="mt-4">
-                        <label for="deskripsi" class="block text-base font-medium text-gray-700 mb-1 flex items-center mobile-label">
-                            Deskripsi Kendaraan
-                        </label>
-                        <div class="relative">
-                            <div class="absolute top-1 left-3 pointer-events-none">
-                                <i class="fas fa-file-alt text-gray-400 mobile-icon"></i>
-                            </div>
-                            <textarea id="deskripsi" name="deskripsi" rows="3"
-                                      class="pl-10 w-full px-4 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 mobile-textarea"
-                                      placeholder="Deskripsi tambahan tentang kendaraan"></textarea>
-                        </div>
+                        <label class="block font-medium mb-1">Description</label>
+                        <textarea name="deskripsi" rows="3"
+                            class="w-full px-4 py-2 border rounded-lg">{{ old('deskripsi') }}</textarea>
                     </div>
                 </div>
 
-             <!-- Tombol Aksi -->
-<div class="flex flex-col sm:flex-row justify-center sm:justify-end space-y-3 sm:space-y-0 sm:space-x-4 pt-4">
-    <button type="button" id="btn-batal" class="px-6 py-3 border border-blue-500 rounded-lg shadow-sm text-sm font-medium text-blue-500 bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 flex items-center justify-center mobile-button">
-        <i class="fas fa-times mr-2 mobile-icon"></i>
-        Batal
-    </button>
-    <button type="submit" class="px-6 py-3 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300 flex items-center justify-center mobile-button">
-        <i class="fas fa-save mr-2 mobile-icon"></i>
-        Simpan Data Mitra
-    </button>
-</div>
+                <!-- Action Buttons -->
+                <div class="flex justify-end gap-4 pt-4">
+                    <a href="{{ route('index') }}" class="px-6 py-3 border rounded-lg text-blue-500 hover:bg-blue-100">
+                        <i class="fas fa-times mr-2"></i> Cancel
+                    </a>
+                    <button type="submit"
+                        class="px-6 py-3 rounded-lg bg-blue-500 text-white hover:bg-blue-600">
+                        <i class="fas fa-save mr-2"></i> Save
+                    </button>
+                </div>
+
             </form>
         </div>
     </div>
 </main>
+
+<style>
+.container-extra-wide {
+    max-width: 99%;
+}
+@media (min-width: 1280px) {
+    .container-extra-wide {
+        max-width: 1800px;
+    }
+}
+.form-container {
+    max-width: none;
+}
+/* Responsiveness Improvements for Small Screens */
+@media (max-width: 400px) {
+    .container-extra-wide {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    .mobile-padding {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    .mobile-text {
+        font-size: 0.875rem;
+    }
+    .mobile-input {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        height: auto;
+    }
+    .mobile-button {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        font-size: 0.875rem;
+    }
+    .mobile-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .mobile-label {
+        font-size: 0.875rem;
+    }
+    .mobile-textarea {
+        min-height: 80px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    .mobile-header {
+        padding: 1rem;
+    }
+    .mobile-header h2 {
+        font-size: 1.25rem;
+    }
+    .mobile-header p {
+        font-size: 0.8rem;
+    }
+    .mobile-section {
+        padding: 1rem;
+    }
+    .mobile-section h3 {
+        font-size: 1.125rem;
+    }
+    .mobile-icon {
+        font-size: 1rem;
+    }
+}
+</style>
 
 @endsection

@@ -1,100 +1,156 @@
-   body {
-           font-family: 'Poppins', sans-serif;
-       }
-       .card-hover {
-           transition: all 0.3s ease;
-       }
-       .card-hover:hover {
-           transform: translateY(-5px);
-           box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-       }
-       .search-section {
-           background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-       }
-       .search-box {
-           border: 2px solid #e2e8f0;
-           transition: all 0.3s ease;
-       }
-       .search-box:focus-within {
-           border-color: #8b5cf6;
-           box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
-       }
-       .search-btn {
-           transition: all 0.3s ease;
-           background: #8b5cf6;
-           color: white;
-       }
-       .search-btn:hover {
-           background: #7c3aed;
-           transform: scale(1.05);
-       }
-       .filter-select {
-           border: 2px solid #e2e8f0;
-           transition: all 0.3s ease;
-       }
-       .filter-select:focus {
-           border-color: #8b5cf6;
-           box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
-           outline: none;
-       }
-       .eye-icon-container {
-           position: absolute;
-           top: 50%;
-           left: 50%;
-           transform: translate(-50%, -50%);
-           background: rgba(255, 255, 255, 0.9);
-           width: 60px;
-           height: 60px;
-           border-radius: 50%;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           transition: all 0.3s ease;
-           opacity: 0;
-           z-index: 10;
-           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-       }
-       .card-hover:hover .eye-icon-container {
-           opacity: 1;
-       }
-       .eye-icon-container:hover {
-           background: #8b5cf6;
-           transform: translate(-50%, -50%) scale(1.05);
-       }
-       .eye-icon {
-           color: #4b5563;
-           font-size: 24px;
-           transition: all 0.3s ease;
-       }
-       .eye-icon-container:hover .eye-icon {
-           color: white;
-       }
-       .text-primary {
-           color: #8b5cf6;
-       }
-       .bg-primary {
-           background-color: #8b5cf6;
-       }
-       .border-primary {
-           border-color: #8b5cf6;
-       }
-       .image-overlay {
-           position: absolute;
-           top: 0;
-           left: 0;
-           width: 100%;
-           height: 100%;
-           background: rgba(0, 0, 0, 0.3);
-           opacity: 0;
-           transition: all 0.3s ease;
-           z-index: 5;
-       }
-       .card-hover:hover .image-overlay {
-           opacity: 1;
-       }
-       .category-badge {
-           background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-       }
-       .route-badge {
-           background: linear-gradient(135deg, #a78bfa, #8b5cf6);
-       }
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Carpool Specific Styles */
+    .carpool-card-hover {
+        transition: all 0.3s ease;
+    }
+    .carpool-card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .carpool-search-section {
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    }
+
+    .carpool-search-box {
+        border: 2px solid #e2e8f0;
+        transition: all 0.3s ease;
+    }
+    .carpool-search-box:focus-within {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .carpool-search-btn {
+        transition: all 0.3s ease;
+        background: #3b82f6;
+        color: white;
+    }
+    .carpool-search-btn:hover {
+        background: #2563eb;
+        transform: scale(1.05);
+    }
+
+    .carpool-filter-select {
+        border: 2px solid #e2e8f0;
+        transition: all 0.3s ease;
+    }
+    .carpool-filter-select:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        outline: none;
+    }
+
+    .carpool-eye-icon-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.9);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        opacity: 0;
+        z-index: 10;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .carpool-card-hover:hover .carpool-eye-icon-container {
+        opacity: 1;
+    }
+    .carpool-eye-icon-container:hover {
+        background: #3b82f6;
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+    .carpool-eye-icon {
+        color: #4b5563;
+        font-size: 20px;
+        transition: all 0.3s ease;
+    }
+    .carpool-eye-icon-container:hover .carpool-eye-icon {
+        color: white;
+    }
+
+    .carpool-image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 5;
+    }
+    .carpool-card-hover:hover .carpool-image-overlay {
+        opacity: 1;
+    }
+
+    /* Carpool Color Variables */
+    .text-blue-500 { color: #3b82f6; }
+    .bg-blue-500 { background-color: #3b82f6; }
+    .bg-blue-600 { background-color: #2563eb; }
+
+    /* Responsive improvements */
+    @media (max-width: 390px) {
+        .container {
+            padding-left: 0.75rem !important;
+            padding-right: 0.75rem !important;
+        }
+
+        .carpool-search-section {
+            padding: 1rem !important;
+        }
+
+        .carpool-search-box input {
+            font-size: 14px !important;
+            padding: 0.75rem !important;
+        }
+
+        .carpool-search-box input::placeholder {
+            font-size: 13px;
+        }
+
+        .carpool-filter-select {
+            font-size: 14px !important;
+            padding: 0.75rem !important;
+        }
+
+        .w-full.lg\\:w-auto.flex.gap-4 {
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .w-full.lg\\:w-auto.flex.gap-4 button {
+            width: 100%;
+            min-width: auto !important;
+        }
+
+        .carpool-card .p-4 {
+            padding: 1rem !important;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .carpool-search-box input::placeholder {
+            font-size: 12px;
+        }
+
+        .carpool-card .p-4 {
+            padding: 0.75rem !important;
+        }
+
+        .text-4xl {
+            font-size: 1.75rem !important;
+        }
+
+        .text-lg {
+            font-size: 0.875rem !important;
+        }
+    }

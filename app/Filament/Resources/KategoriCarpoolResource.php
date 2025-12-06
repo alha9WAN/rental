@@ -22,18 +22,19 @@ class KategoriCarpoolResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-           Forms\Components\Select::make('name')
+Forms\Components\Select::make('name')
     ->label('Nama Kategori')
     ->options([
-        'city route' => 'City Route',
-        'tour route' => 'Tour Route',
-        'airport transfer' => 'Airport Transfer',
-        'private executive' => 'Private/Executive',
-        'group shuttle' => 'Group/Shuttle',
+        'City Route' => 'City Route',
+        'Tour Route' => 'Tour Route',
+        'Airport Transfer' => 'Airport Transfer',
+        'Private Executive' => 'Private Executive',
+        'Group Shuttle' => 'Group Shuttle',
     ])
     ->required()
     ->placeholder('Pilih Jenis Kategori Carpool')
     ->columnSpanFull(),
+
 
 
             Forms\Components\Textarea::make('deskripsi')

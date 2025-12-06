@@ -16,6 +16,17 @@
 <link rel="stylesheet" href="{{ asset('css-web/blog.css') }}">
 
 
+
+{{-- css blog 2--}}
+<link rel="stylesheet" href="{{ asset('css-web/blog2.css') }}">
+
+
+{{-- css carpoll --}}
+<link rel="stylesheet" href="{{ asset('css-web/listcarpool.css') }}">
+
+
+
+
     {{-- CSS Khusus per halaman --}}
 @if (Request::is('mobil*'))
     <link rel="stylesheet" href="{{ asset('css-web/listmobil.css') }}">
@@ -23,9 +34,8 @@
     <link rel="stylesheet" href="{{ asset('css-web/listmotor.css') }}">
 @elseif (Request::is('voucher*'))
     <link rel="stylesheet" href="{{ asset('css-web/listvoucher.css') }}">
-@elseif (Request::is('carPool*'))
-    <link rel="stylesheet" href="{{ asset('css-web/listcarpool.css') }}">
 @endif
+
 
 
 
@@ -52,6 +62,8 @@
 
 {{-- js blog --}}
 <script src="{{ asset('js-web/blog.js') }}"></script>
+
+
 
 </body>
 </html>

@@ -300,5 +300,80 @@ html {
     }
 
 
+/* css faq */
+.faq-item {
+    transition: all 0.3s ease;
+}
 
+.faq-answer {
+    max-height: 0;
+    opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+    opacity: 1;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-item.active {
+    border-color: #3B82F6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+}
+
+.faq-icon {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item:hover {
+    transform: translateY(-2px);
+}
+
+
+/* css car poll */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+@keyframes float-delayed {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+@keyframes float-delayed-2 {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(-5deg); }
+}
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+.animate-float-delayed {
+    animation: float-delayed 7s ease-in-out infinite;
+}
+.animate-float-delayed-2 {
+    animation: float-delayed-2 8s ease-in-out infinite;
+}
+
+
+
+/* css FAQ */
+.faq-answer {
+   transition: max-height 0.5s ease-in-out;
+
+
+}
+
+
+.faq-answer {
+   max-height: 0;
+   overflow: hidden;
+   transition: max-height 0.4s ease;
+}
+
+
+.faq-item {
+   align-self: start;
+}
 

@@ -13,7 +13,7 @@ class MobilController extends Controller
     /**
      * Display a listing of the resource.
      */
-     public function index(Request $request)
+     public function index(Request $request, $kategori = 'all')
     {
         // search
    $query = Mobil::with('mobilKategori');
@@ -29,25 +29,31 @@ class MobilController extends Controller
 
         // end search
 
-        // kategori
-  // 🚘 Jika user memilih kategori (bukan 'all')
-    if ($request->has('category') && $request->category != 'all') {
-        $query->whereHas('mobilKategori', function ($q) use ($request) {
-            $q->where('nama', $request->category);
+        // category
+    $selectedCategory = $request->category ?? $kategori;
+
+    // Filter kategori jika bukan ALL
+    if ($selectedCategory !== 'all') {
+        $query->whereHas('mobilKategori', function ($q) use ($selectedCategory) {
+            $q->where('nama', $selectedCategory);
         });
     }
 
+            // END category
+
+
+
          // Jalankan query dan ambil data
-$mobils = $query->paginate(3);
+$mobils = $query->paginate(12);
 
 
 
         // kategori mobil
         $kategoris = KategoriMobil::all();
 
-        // Kirim data mobil ke view
-        return view('mobil.list', compact('mobils','kategoris'));
-    }
+ // Kirim ke view
+    return view('mobil.list', compact('mobils', 'kategoris', 'selectedCategory'));
+ }
 
     /**
      * Show the form for creating a new resource.

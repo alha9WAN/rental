@@ -13,15 +13,12 @@ return new class extends Migration
     {
   Schema::create('kategori_mobils', function (Blueprint $table) {
     $table->id();
-    $table->enum('nama', [
-        'economy',
-        'compact',
-        'midsize sedan',
-        'suv crossover',
-        'mpv family',
-        'premium luxury',
-        'pickup commercial'
-    ]);
+ $table->enum('nama', [
+    'Compact',
+    'Medium',
+    'Large',
+    'Mini Bus'
+     ])->unique();
     $table->text('deskripsi')->nullable();
     $table->timestamps();
 });

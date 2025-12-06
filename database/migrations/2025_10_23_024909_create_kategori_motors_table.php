@@ -13,13 +13,13 @@ return new class extends Migration
     {
            Schema::create('kategori_motors', function (Blueprint $table) {
             $table->id();
-            $table->enum('nama', [
-                'electric',
-                'matic_under_125cc',
-                'matic_125_155cc',
-                'sport_manual',
-                'premium_big_scooter'
-            ]);
+      $table->enum('nama', [
+                'Electric',
+                'Small Matic 110-125cc',
+                'Mid Matic 125-155cc',
+                'Sport Manual 150-250cc',
+                'Big Scooter 250-350cc'
+            ])->unique();
             $table->text('deskripsi')->nullable();
             $table->timestamps();
         });

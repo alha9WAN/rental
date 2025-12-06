@@ -17,7 +17,9 @@ class VoucherController extends Controller
     if ($request->has('search') && $request->search != '') {
             $query->where(function ($q) use ($request) {
                 $q->where('nama', 'like', '%' . $request->search . '%')
-                  ->orWhere('diskon', 'like', '%' . $request->search . '%');
+                  ->orWhere('diskon', 'like', '%' . $request->search . '%')
+                   ->orWhere('alamat', 'like', '%' . $request->search . '%');
+
             });
         }
 
@@ -28,7 +30,14 @@ class VoucherController extends Controller
         });
     }
 
-    $vouchers = $query->paginate(3);
+
+    // cari berdasrkan region
+      // ⭐ REGION FILTER —
+    if ($request->has('region') && $request->region != '') {
+        $query->where('alamat', 'like', '%' . $request->region . '%');
+    }
+    
+    $vouchers = $query->paginate(12);
      $kategoris = KategoriVoucher::all();
         return view('voucher.list', compact('vouchers','kategoris'));
     }

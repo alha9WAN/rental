@@ -11,7 +11,7 @@ class MotorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request,  $kategori = 'all')
     {
 $query = Motor::with('kategoriMotor');
 
@@ -24,16 +24,23 @@ $query = Motor::with('kategoriMotor');
         }
 
 
-            if ($request->has('category') && $request->category != 'all') {
-        $query->whereHas('kategoriMotor', function ($q) use ($request) {
-            $q->where('nama', $request->category);
+
+       $selectedCategory = $request->category ?? $kategori;
+
+        if ($selectedCategory !== 'all') {
+        $query->whereHas('kategoriMotor', function ($q) use ($selectedCategory) {
+            $q->where('nama', $selectedCategory);
         });
     }
-    $motors = $query->paginate(3);
+
+
+
+
+    $motors = $query->paginate(12);
      $kategoris = KategoriMotor::all();
 
 
-        return view('motor.list', compact('motors','kategoris'));
+        return view('motor.list', compact('motors','kategoris','selectedCategory'));
     }
 
     /**

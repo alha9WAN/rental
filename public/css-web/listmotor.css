@@ -1,161 +1,222 @@
-         /* css list motor */
-                body {
-           font-family: 'Poppins', sans-serif;
-       }
-       .card-hover {
-           transition: all 0.3s ease;
-       }
-       .card-hover:hover {
-           transform: translateY(-5px);
-           box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-       }
-       .search-section {
-           background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-       }
-       .search-box {
-           border: 2px solid #e2e8f0;
-           transition: all 0.3s ease;
-       }
-       .search-box:focus-within {
-           border-color: #22c55e;
-           box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
-       }
-       .search-btn {
-           transition: all 0.3s ease;
-           background: #22c55e;
-           color: white;
-       }
-       .search-btn:hover {
-           background: #16a34a;
-           transform: scale(1.05);
-       }
-       .filter-select {
-           border: 2px solid #e2e8f0;
-           transition: all 0.3s ease;
-       }
-       .filter-select:focus {
-           border-color: #22c55e;
-           box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
-           outline: none;
-       }
-       .eye-icon-container {
-           position: absolute;
-           top: 50%;
-           left: 50%;
-           transform: translate(-50%, -50%);
-           background: rgba(255, 255, 255, 0.9);
-           width: 60px;
-           height: 60px;
-           border-radius: 50%;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           transition: all 0.3s ease;
-           opacity: 0;
-           z-index: 10;
-           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-       }
-       .card-hover:hover .eye-icon-container {
-           opacity: 1;
-       }
-       .eye-icon-container:hover {
-           background: #22c55e;
-           transform: translate(-50%, -50%) scale(1.05);
-       }
-       .eye-icon {
-           color: #4b5563;
-           font-size: 24px;
-           transition: all 0.3s ease;
-       }
-       .eye-icon-container:hover .eye-icon {
-           color: white;
-       }
-       .text-primary {
-           color: #22c55e;
-       }
-       .bg-primary {
-           background-color: #22c55e;
-       }
-       .border-primary {
-           border-color: #22c55e;
-       }
-       .image-overlay {
-           position: absolute;
-           top: 0;
-           left: 0;
-           width: 100%;
-           height: 100%;
-           background: rgba(0, 0, 0, 0.3);
-           opacity: 0;
-           transition: all 0.3s ease;
-           z-index: 5;
-       }
-       .card-hover:hover .image-overlay {
-           opacity: 1;
-       }
-       .category-badge {
-           background: linear-gradient(135deg, #22c55e, #16a34a);
-       }
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .search-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        .search-box {
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .search-box:focus-within {
+            border-color: #eab308;
+            box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.1);
+        }
+        .search-btn {
+            transition: all 0.3s ease;
+            background: #eab308;
+            color: white;
+        }
+        .search-btn:hover {
+            background: #ca8a04;
+            transform: scale(1.05);
+        }
+        .filter-select {
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .filter-select:focus {
+            border-color: #eab308;
+            box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.1);
+            outline: none;
+        }
+        .eye-icon-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        .card-hover:hover .eye-icon-container {
+            opacity: 1;
+        }
+        .eye-icon-container:hover {
+            background: #eab308;
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+        .eye-icon {
+            color: #4b5563;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+        .eye-icon-container:hover .eye-icon {
+            color: white;
+        }
+        .text-primary {
+            color: #eab308;
+        }
+        .bg-primary {
+            background-color: #eab308;
+        }
+        .border-primary {
+            border-color: #eab308;
+        }
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+        .card-hover:hover .image-overlay {
+            opacity: 1;
+        }
+        .category-badge {
+            background: linear-gradient(135deg, #eab308, #ca8a04);
+        }
 
+        /* PERBAIKAN KUALITAS GAMBAR UNTUK LAPTOP */
+        .md\\:w-2\\/5 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: high-quality;
+            filter: none !important;
+        }
 
-       /* end css list motor */
+        /* PERBAIKAN RESPONSIVE UNTUK GAMBAR MOTOR YANG LEBIH BESAR DAN TAJAM */
+        @media (min-width: 768px) {
+            .bg-white.rounded-xl.overflow-hidden.shadow-lg.card-hover.border.border-gray-100.flex.flex-col.md\\:flex-row {
+                flex-direction: row;
+            }
 
+            .md\\:w-2\\/5 {
+                width: 35% !important;
+                min-height: 240px;
+            }
 
-       /* Responsive improvements */
-@media (max-width: 390px) {
-    .container {
-        padding-left: 0.75rem !important;
-        padding-right: 0.75rem !important;
-    }
+            .md\\:w-3\\/5 {
+                width: 65% !important;
+            }
 
-    .search-section {
-        padding: 1rem !important;
-    }
+            .md\\:h-60 {
+                height: 240px !important;
+            }
+        }
 
-    .search-box input {
-        font-size: 14px !important;
-        padding: 0.75rem !important;
-    }
+        @media (min-width: 1024px) {
+            .md\\:w-2\\/5 {
+                width: 30% !important;
+                min-height: 260px;
+            }
 
-    /* Perbaikan placeholder */
-    .search-box input::placeholder {
-        font-size: 13px;
-    }
+            .md\\:w-3\\/5 {
+                width: 70% !important;
+            }
 
-    .filter-select {
-        font-size: 14px !important;
-        padding: 0.75rem !important;
-    }
+            .lg\\:h-56 {
+                height: 224px !important;
+            }
+        }
 
-    .w-full.lg\\:w-auto.flex.gap-4 {
-        width: 100%;
-        flex-direction: column;
-    }
+        @media (min-width: 1280px) {
+            .xl\\:h-64 {
+                height: 256px !important;
+            }
+        }
 
-    .w-full.lg\\:w-auto.flex.gap-4 button {
-        width: 100%;
-        min-width: auto !important;
-    }
+        @media (max-width: 768px) {
+            .bg-white.rounded-xl.overflow-hidden.shadow-lg.card-hover.border.border-gray-100.flex.flex-col.md\\:flex-row {
+                flex-direction: column;
+            }
 
-    .car-card .p-6 {
-        padding: 1rem !important;
-    }
-}
+            .md\\:w-2\\/5, .md\\:w-3\\/5 {
+                width: 100% !important;
+            }
 
-@media (max-width: 360px) {
-    .search-box input::placeholder {
-        font-size: 12px;
-    }
+            .w-full.h-52.md\\:h-60.lg\\:h-56.xl\\:h-64.object-cover {
+                height: 220px !important;
+            }
+        }
 
-    .car-card .p-6 {
-        padding: 0.75rem !important;
-    }
+        /* Responsive improvements untuk mobile kecil */
+        @media (max-width: 390px) {
+            .container {
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+            }
 
-    .text-4xl {
-        font-size: 1.75rem !important;
-    }
+            .search-section {
+                padding: 1rem !important;
+            }
 
-    .text-lg {
-        font-size: 0.875rem !important;
-    }
-}
+            .search-box input {
+                font-size: 14px !important;
+                padding: 0.75rem !important;
+            }
+
+            .search-box input::placeholder {
+                font-size: 13px;
+            }
+
+            .filter-select {
+                font-size: 14px !important;
+                padding: 0.75rem !important;
+            }
+
+            .w-full.lg\\:w-auto.flex.gap-4 {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .w-full.lg\\:w-auto.flex.gap-4 button {
+                width: 100%;
+                min-width: auto !important;
+            }
+
+            .w-full.h-52.md\\:h-60.lg\\:h-56.xl\\:h-64.object-cover {
+                height: 180px !important;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .search-box input::placeholder {
+                font-size: 12px;
+            }
+
+            .text-4xl {
+                font-size: 1.75rem !important;
+            }
+
+            .text-lg {
+                font-size: 0.875rem !important;
+            }
+
+            .w-full.h-52.md\\:h-60.lg\\:h-56.xl\\:h-64.object-cover {
+                height: 160px !important;
+            }
+        }

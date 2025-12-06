@@ -23,18 +23,19 @@ class KategoriVoucherResource extends Resource
     {
         return $form
             ->schema([
-             Forms\Components\Select::make('nama')
+  Forms\Components\Select::make('nama')
     ->label('Nama Kategori')
     ->options([
-        'kuliner' => 'Kuliner',
-        'wisata_tiket' => 'Wisata & Tiket',
-        'akomodasi' => 'Akomodasi',
-        'transportasi' => 'Transportasi',
-        'souvenir_belanja' => 'Souvenir & Belanja',
+        'Toko Souvenir' => 'Toko Souvenir',
+        'Super Market' => 'Super Market',
+        'Spa' => 'Spa',
+        'Salon Barber' => 'Salon Barber',
+        'Restaurant' => 'Restaurant',
     ])
     ->required()
     ->placeholder('Pilih Kategori Voucher')
     ->columnSpanFull(),
+
 
                 Forms\Components\Textarea::make('deskripsi')
                     ->label('Deskripsi')

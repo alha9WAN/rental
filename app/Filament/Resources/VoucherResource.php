@@ -24,7 +24,7 @@ class VoucherResource extends Resource
     protected static ?string $navigationGroup = 'Manajemen Voucher';
     protected static ?int $navigationSort = 2;
     protected static ?string $navigationLabel = 'Tambah Voucher';
-    protected static ?string $slug = 'tambah-voucher';
+    protected static ?string $slug = 'tambah-Voucher';
     protected static ?string $navigationIcon = 'heroicon-o-plus-circle';
 
     public static function form(Form $form): Form
@@ -39,8 +39,8 @@ class VoucherResource extends Resource
                 ])
                 ->schema([
                     TextInput::make('nama')
-                        ->label('Nama Voucher')
-                        ->placeholder('Contoh: Voucher Hotel 10%')
+                        ->label('Nama Promotion')
+                        ->placeholder('Contoh: Promotion Hotel 10%')
                         ->required()
                         ->maxLength(255)    ->reactive()
                         ->afterStateUpdated(function ($state, callable $set, $get) {
@@ -74,6 +74,10 @@ class VoucherResource extends Resource
                         ->nullable()    ->helperText('Tidak menggunkan % cukup angka saja Contoh 30 atau 10')
 ,
 
+
+
+
+
                           TextInput::make('harga')
                         ->label('Harga')
                         ->numeric()
@@ -81,6 +85,12 @@ class VoucherResource extends Resource
                         ->prefix('Rp')
                         ->placeholder('Contoh: 250000')
                         ->columnSpan(1),
+
+                            TextInput::make('alamat')
+                        ->label('Alamat')
+                        ->placeholder('Contoh: Lombok')
+                        ->nullable()
+                        ->columnSpan(1)->required(),
 
                         DatePicker::make('berlaku_hingga')
                         ->label('Berlaku Hingga')

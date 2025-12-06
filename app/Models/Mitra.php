@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mitra extends Model
 {
-       protected $fillable = [
+    protected $table = 'mitras';
+
+    protected $fillable = [
         'nama',
         'alamat',
         'no_hp',
@@ -16,5 +18,10 @@ class Mitra extends Model
         'nama_kendaraan',
         'harga_sewa',
         'deskripsi',
+        'status',
+    ];
+
+    protected $casts = [
+        'harga_sewa' => 'decimal:2',
     ];
 }

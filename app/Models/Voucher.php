@@ -24,7 +24,8 @@ class Voucher extends Model
             // tambahan
         'fitur',
         'tagline',
-        'harga', 
+        'harga',
+        'alamat'
     ];
 
     public function kategoriVoucher()

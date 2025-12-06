@@ -6,29 +6,32 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('mitras', function (Blueprint $table) {
-    $table->id();
-    $table->string('nama');
-    $table->string('alamat');
-    $table->string('no hp');
-    $table->string('email')->nullable();
-    $table->string('nama_perusahaan')->nullable();
-    $table->enum('jenis_kendaraan', ['mobil', 'motor']);
-    $table->string('nama_kendaraan');
-    $table->decimal('harga_sewa', 12, 2)->nullable();
-    $table->text('deskripsi')->nullable();
-    $table->timestamps();
+            $table->id();
+            $table->string('nama');
+            $table->string('alamat')->nullable();
+            $table->string('no_hp');
+            $table->string('email')->nullable();
+            $table->string('nama_perusahaan')->nullable();
+
+            $table->enum('jenis_kendaraan', ['mobil', 'motor'])->nullable();
+            $table->string('nama_kendaraan')->nullable();
+            $table->decimal('harga_sewa', 12, 2)->nullable();
+            $table->text('deskripsi')->nullable();
+
+            $table->enum('status', [
+                'Belum Terverifikasi',
+                'Menunggu Konfirmasi',
+                'Terverifikasi',
+                'Ditolak'
+            ])->default('Belum Terverifikasi');
+
+            $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('mitras');

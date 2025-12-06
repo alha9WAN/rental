@@ -91,4 +91,40 @@
 
 
 
+// js faq
 
+
+
+document.addEventListener('DOMContentLoaded', function() {
+   const faqItems = document.querySelectorAll('.faq-item');
+
+
+   faqItems.forEach(item => {
+       const question = item.querySelector('.faq-question');
+       const answer = item.querySelector('.faq-answer');
+       const icon = item.querySelector('.faq-icon');
+
+
+       question.addEventListener('click', () => {
+           const isActive = item.classList.contains('active');
+
+
+           // Close all FAQ items first
+           faqItems.forEach(otherItem => {
+               otherItem.classList.remove('active');
+               const otherAnswer = otherItem.querySelector('.faq-answer');
+               const otherIcon = otherItem.querySelector('.faq-icon');
+               otherAnswer.style.maxHeight = '0';
+               otherIcon.style.transform = 'rotate(0deg)';
+           });
+
+
+           // If the clicked item wasn't active, open it
+           if (!isActive) {
+               item.classList.add('active');
+               answer.style.maxHeight = answer.scrollHeight + 'px';
+               icon.style.transform = 'rotate(45deg)';
+           }
+       });
+   });
+});

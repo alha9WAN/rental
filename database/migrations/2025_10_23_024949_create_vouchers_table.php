@@ -25,6 +25,7 @@ return new class extends Migration
               // tambahan
             $table->string('tagline')->nullable();
             $table->json('fitur')->nullable();
+              $table->string('alamat')->nullable();   // <—— DITAMBAHKAN
             $table->timestamps();
         });
     }
